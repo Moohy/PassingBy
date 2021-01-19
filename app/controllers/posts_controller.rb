@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   # GET /posts
   # GET /posts.json
@@ -25,12 +26,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    puts current_user.id
+
     return unless !!current_user
-    # @post = Post.new(post_params)
+    @post = Post.new()
     @post.user_id = current_user.id
-    @post.city = user_city 
-    @post.longitude = user_lon
-    @post.latitude = user_lat
+    # @post.city = user_city 
+    # @post.longitude = user_lon
+    # @post.latitude = user_lat
 
     respond_to do |format|
       if @post.save
