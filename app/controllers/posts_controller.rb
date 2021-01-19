@@ -32,8 +32,6 @@ class PostsController < ApplicationController
     @post = Post.new()
     @post.user_id = current_user.id
     @post.city = user_city 
-    @post.longitude = user_lon
-    @post.latitude = user_lat
 
     respond_to do |format|
       if @post.save

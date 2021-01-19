@@ -1,11 +1,8 @@
-class Post < ApplicationRecord
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
-  
+class Post < ApplicationRecord  
   belongs_to :user
 
   private 
-  def self.near_by_posts coor
-    self.near([40.71, -100.23], 50, units: :km)
+  def self.near_by_posts city
+    self.where(city: city)
   end
 end
