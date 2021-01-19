@@ -17,8 +17,6 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.user_id %></td>
-        <td><%= post.longitude %></td>
-        <td><%= post.latitude %></td>
         <td><%= post.city %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
