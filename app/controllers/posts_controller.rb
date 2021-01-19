@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def create
     return unless !!current_user
     # @post = Post.new(post_params)
-    @post.user_id = current_user.id
+    @post.user = current_user
     @post.city = user_city 
     @post.longitude = user_lon
     @post.latitude = user_lat
