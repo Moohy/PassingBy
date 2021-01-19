@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.near_by_posts request.location.coordinates
+    puts @posts
   end
 
   # GET /posts/1
@@ -25,12 +26,11 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     return unless !!current_user
-    @post = Post.new(post_params)
-    @post.user = current_user
+    # @post = Post.new(post_params)
+    @post.user_id = current_user.id
     @post.city = user_city 
     @post.longitude = user_lon
     @post.latitude = user_lat
-
 
     respond_to do |format|
       if @post.save
