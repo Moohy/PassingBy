@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
       if @comment.save
         NewCommentNotificationJob.perform_later(@comment.post_id)
 
-        redirect_to post_path(@comment.post_id)
+        redirect_to root_path
         # format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to post_path(params[:post_id]) }
