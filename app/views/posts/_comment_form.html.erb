@@ -1,4 +1,4 @@
-<%= form_with(url: post_comments_path(post.id), local: true) do |form| %>
+<%= form_with(url: post_comments_path(post.id), local: true, method: :post) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -25,4 +25,5 @@
     <%= q.submit %>
   </div>
   <%end%>
+  <h1>Mohammed</h1>
 <% end %>
