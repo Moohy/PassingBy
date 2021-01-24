@@ -1,17 +1,20 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create]
+  DEFAULT_CITY="Jeddah"
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.near_by_posts request.location.city
-    puts @posts
+    @posts = Post.near_by_posts(request.location.city || DEFAULT_CITY)
+    # @posts = @posts.map {|post| {post: post, comments: post.comments}}
+    # puts @posts
   end
 
   # GET /posts/1
   # GET /posts/1.json
-  def show
+  def show 
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -26,10 +29,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    puts current_user.id
-
     return unless !!current_user
-    @post = Post.new()
+    @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.city = user_city 
 
@@ -77,11 +78,11 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit()#image
+      params.require(:post).permit(:image)#image
     end
 
     def user_city
-      request.location.city
+      request.location.city || DEFAULT_CITY
     end
 
     def user_lon

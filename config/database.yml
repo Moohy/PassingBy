@@ -24,6 +24,5 @@ test:
 
 production:
   <<: *default
-  database: passing_by_production
-  username: passing_by
-  password: <%= ENV['FAHES_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+

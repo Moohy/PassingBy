@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'geocoder'
+gem 'active_storage_validations'
+gem 'active_elastic_job'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
