@@ -31,5 +31,6 @@ module PassingBy
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    # config.assets.prefix = '/some_other_path'
   end
 end
