@@ -29,11 +29,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        # format.json { render :show, status: :created, location: @comment }
         NewCommentNotificationJob.perform_later(@comment.post_id)
       else
         format.html { redirect_to post_path(params[:post_id]) }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        # format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
