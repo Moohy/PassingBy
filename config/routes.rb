@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :posts do
     post 'like', to: 'likes#like'
     delete 'unlike', to: 'likes#unlike'
-    resources :comments, except: [:index, :show, :update, :delete]
+    resources :comments, except: [:index, :update, :delete]
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions',

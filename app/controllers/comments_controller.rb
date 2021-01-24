@@ -9,8 +9,9 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   # GET /comments/1.json
-  # def show
-  # end
+  def show
+    redirect_to post_path(@comment.post_id)
+  end
 
   # GET /comments/new
   def new
@@ -31,7 +32,7 @@ class CommentsController < ApplicationController
         puts "########### saved"
         NewCommentNotificationJob.perform_later(@comment.post_id)
 
-        format.html { redirect_to root_path, notice: 'Comment was successfully created.' }
+        format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
         puts "########### redirected"
         # format.json { render :show, status: :created, location: @comment }
       else
