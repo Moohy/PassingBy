@@ -25,12 +25,14 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
+    puts "########### not yet saved"
     respond_to do |format|
       if @comment.save
+        puts "########### saved"
         NewCommentNotificationJob.perform_later(@comment.post_id)
 
-        redirect_to root_path
+        format.html { redirect_to root_path, notice: 'Comment was successfully created.' }
+        puts "########### redirected"
         # format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to post_path(params[:post_id]) }

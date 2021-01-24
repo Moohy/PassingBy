@@ -1,4 +1,4 @@
-<%= form_with(url: post_comments_path(post.id), local: true) do |form| %>
+<%= form_with(url: post_comments_path(@post.id), local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -13,7 +13,7 @@
 
 <% form.fields_for :comment do |q| %>
   <div class="field">
-    <%= q.hidden_field :post_id, :value => post.id %>
+    <%= q.hidden_field :post_id, :value => @post.id %>
   </div>
 
   <div class="field">
