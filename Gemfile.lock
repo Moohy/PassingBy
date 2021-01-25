@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/active-elastic-job/active-elastic-job.git
+  revision: c172e1f839f649b891431cbca158cc77916c30ca
+  specs:
+    active_elastic_job (3.0.0.alpha)
+      aws-sdk-sqs (~> 1)
+      rails (>= 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,9 +45,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_elastic_job (2.0.1)
-      aws-sdk (~> 2)
-      rails (>= 4.2)
     active_storage_validations (0.9.2)
       rails (>= 5.2.0)
     activejob (6.0.3.4)
@@ -62,13 +67,15 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     aws-eventstream (1.1.0)
-    aws-sdk (2.11.632)
-      aws-sdk-resources (= 2.11.632)
-    aws-sdk-core (2.11.632)
-      aws-sigv4 (~> 1.0)
+    aws-partitions (1.418.0)
+    aws-sdk-core (3.111.2)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.632)
-      aws-sdk-core (= 2.11.632)
+    aws-sdk-sqs (1.35.0)
+      aws-sdk-core (~> 3, >= 3.109.0)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.16)
@@ -211,7 +218,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_elastic_job
+  active_elastic_job!
   active_storage_validations
   bootsnap (>= 1.4.2)
   byebug
