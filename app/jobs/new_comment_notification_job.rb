@@ -3,6 +3,8 @@ class NewCommentNotificationJob < ApplicationJob
 
   def perform(post_id)
     # Do something later
+    puts "########### in job"
+
     NewCommentMailer.email_owner(post_id)
   end
 end
