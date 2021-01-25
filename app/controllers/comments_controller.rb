@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         puts "########### saved"
-        NewCommentNotificationJob.perform_later(@comment.post_id)
+        # NewCommentNotificationJob.perform_later(@comment.post.id)
 
         format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
         puts "########### redirected"
