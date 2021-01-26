@@ -30,12 +30,12 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         puts "########### saved"
-        NewCommentMailer.email_owner(@comment.post_id).deliver_now
+        # NewCommentMailer.email_owner(@comment.post_id).deliver_now
         message = NewCommentMailer.email_owner(@comment.post_id)
         # message['X-SES-FROM-ARN'] = 'arn:aws:ses:us-east-1:012345678910:identity/mohammed@memes.com'
         message.deliver
 
-        NewCommentNotificationJob.perform_now(@comment.post.id)
+        # NewCommentNotificationJob.perform_now(@comment.post.id)
 
         format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
         puts "########### redirected"
