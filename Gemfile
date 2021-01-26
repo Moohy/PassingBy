@@ -33,6 +33,7 @@ gem 'active_storage_validations'
 # gem 'active_elastic_job', :git => "git://github.com/active-elastic-job/active-elastic-job.git"
 gem 'aws-sdk-rails'
 gem 'jquery-rails'
+gem "aws-sdk-s3", require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
