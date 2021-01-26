@@ -2,7 +2,7 @@ Rails.application.configure do
   config.assets.compile = true
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.delivery_method = :smpt
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     port: 587,
     address: ENV['SMTP_ADDRESS'],
