@@ -5,6 +5,6 @@ class NewCommentNotificationJob < ApplicationJob
     # Do something later
     puts "########### in job"
 
-    NewCommentMailer.email_owner(post_id)
+    NewCommentMailer.email_owner(post_id).deliver_now
   end
 end

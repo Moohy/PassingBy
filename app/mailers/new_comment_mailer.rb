@@ -1,7 +1,7 @@
 class NewCommentMailer < ApplicationMailer
     default from: 'no-reply@passing-by.com'
 
-    def self.email_owner(post_id)
+    def email_owner(post_id)
         puts "########### in mailer"
 
         @post = Post.find_by(id: post_id)

@@ -30,9 +30,8 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         puts "########### saved"
-        ActionMailer::Base.mail(to: "mode9999910@gmail.com", subject: "New comment to post ##{1}",
-          template_path: 'new_comment_mailer',
-          template_name: 'new_comment_mailer')
+        NewCommentMailer.email_owner(post_id).deliver_now
+
         NewCommentNotificationJob.perform_now(@comment.post.id)
 
         format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
