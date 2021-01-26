@@ -9,7 +9,7 @@ class NewCommentMailer < ApplicationMailer
 
         owner = @post.user.email
         puts "########### #{owner}"
-        ActionMailer::Base.mail(to: owner, subject: "New comment to post ##{post_id}",
+        ActionMailer::Base.mail(to: "mode99910@gmail.com", subject: "New comment to post ##{post_id}",
             template_path: 'new_comment_mailer',
             template_name: 'new_comment_mailer')
     end
