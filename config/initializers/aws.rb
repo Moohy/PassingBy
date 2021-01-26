@@ -16,7 +16,7 @@ Aws::Rails.add_action_mailer_delivery_method(
 )
 
 Aws::Rails::SqsActiveJob.configure do |config|
-    config.logger = ActiveSupport::Logger.new(STDOUT)
+    # config.logger = ActiveSupport::Logger.new(STDOUT)
     config.max_messages = 5
     config.client = Aws::SQS::Client.new(region: 'us-east-1')
   end
