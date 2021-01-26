@@ -7,7 +7,7 @@ require 'json'
 # Remember to exclude "path/to/aws_secrets.json" from version control, e.g. by
 # adding it to .gitignore
 # secrets = JSON.load(File.read('path/to/aws_secrets.json'))
-creds = Aws::Credentials.new(ENV['SMTP_USER_NAME'], ENV['SMTP_PASSWORD'])
+creds = Aws::Credentials.new('AKIA2TDEZWNHF5V3SZ5W', 'MxQFK9aSVwJ5T0aEwiYVBc0pxDPxbYheYMywCzZ+')
 
 Aws::Rails.add_action_mailer_delivery_method(
   :ses,
