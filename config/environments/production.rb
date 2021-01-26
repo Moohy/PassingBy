@@ -2,7 +2,7 @@ Rails.application.configure do
   config.assets.compile = true
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :ses
   config.action_mailer.smtp_settings = {
     port: 587,
     address: ENV['SMTP_ADDRESS'],
@@ -67,7 +67,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  config.active_job.queue_adapter     = :active_elastic_job
+  # config.active_job.queue_adapter     = :active_elastic_job
   # config.active_job.queue_name_prefix = "passing_by_production"
 
   config.action_mailer.perform_caching = false

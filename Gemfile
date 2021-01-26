@@ -30,7 +30,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'geocoder'
 gem 'active_storage_validations'
-gem 'active_elastic_job', :git => "git://github.com/active-elastic-job/active-elastic-job.git"
+# gem 'active_elastic_job', :git => "git://github.com/active-elastic-job/active-elastic-job.git"
+gem 'aws-sdk-rails'
 gem 'jquery-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
