@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         puts "########### saved"
-        NewCommentMailer.email_owner(post_id).deliver_now
+        NewCommentMailer.email_owner(@comment.post_id).deliver_now
 
         NewCommentNotificationJob.perform_now(@comment.post.id)
 
