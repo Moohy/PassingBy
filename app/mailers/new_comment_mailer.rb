@@ -1,5 +1,5 @@
 class NewCommentMailer < ApplicationMailer
-    default from: 'no-reply@passing-by.com'
+    default from: 'mode99910@gmail.com'
 
     def email_owner(post_id)
         puts "########### in mailer"
