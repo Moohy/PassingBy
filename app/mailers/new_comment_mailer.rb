@@ -14,8 +14,8 @@ class NewCommentMailer < ApplicationMailer
         #     template_name: 'new_comment_mailer')
 
         mail(to: "mode99910@gmail.com",
-            subject: 'Welcome to passingBy') do |format|
-            format.text { render plain: 'New comment to post ##{post_id}"' }
+            subject: 'New comment to your passingBy post') do |format|
+            format.text { render plain: "New comment to post #{post_id}" }
         end
     end
 end
