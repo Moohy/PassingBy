@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: PassingBy-worker
+    environment: PassingBy-env-1
 environment-defaults:
   PassingBy-env-1:
     branch: null
