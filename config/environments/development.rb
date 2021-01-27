@@ -5,6 +5,8 @@ Rails.application.configure do
 
   config.active_storage.analyzers = []
   config.active_storage.previewers = []
+
+  config.assets.css_compressor = :purger
   
 
   # In the development environment your application's code is reloaded on
