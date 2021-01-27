@@ -6,8 +6,7 @@
   </div>
 
   <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg ">
-    <% if !!current_user && current_user.likes.where(post_id: @post.id).count > 0 %>
-      
+    <% if !!current_user && current_user.likes.where(post_id: @post.id).count > 0 %>    
       <%= button_to  post_unlike_path(@post.id), method: :delete do%>
         <div class="flex inline justify-center align-center  width-48  text-indigo-600 hover:text-indigo-500">
           <svg class="h-14 w-14 "  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
