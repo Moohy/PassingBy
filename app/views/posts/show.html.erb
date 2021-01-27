@@ -1,33 +1,88 @@
-<p id="notice"><%= notice %></p>
+<div class="h-screen bg-gray-100 pb-10">
+  <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg">
+    <% if !@post.image.nil? && @post.image.attached? && @post.image.representable? %>
+      <img class="h-full w-full object-cover" src=<%= url_for(@post.image)%> alt="People working on laptops">
+    <%end%>
+  </div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
+  <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg ">
+    <% if !!current_user && current_user.likes.where(post_id: @post.id).count > 0 %>
+      
+      <%= button_to  post_unlike_path(@post.id), method: :delete do%>
+        <div class="flex inline justify-center align-center  width-48  text-indigo-600 hover:text-indigo-500">
+          <svg class="h-14 w-14 "  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      <%end%>
+    <%elsif !!current_user%>
+      <%= button_to  post_like_path(@post.id), method: :post do%>
+        <div class="flex inline justify-center align-center  width-48  text-indigo-600 hover:text-indigo-500">
+          <svg class="h-14 w-14 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+      <%end%>
+    <%else%>
+      <%= button_to  new_user_session_path, method: :get do%>
+        <div class="flex inline justify-center align-center  width-48  text-indigo-600 hover:text-indigo-500">
+          <svg class="h-14 w-14 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
 
-<% if !@post.image.nil? && @post.image.attached? && @post.image.representable? %>
-  <%= image_tag(@post.image, size: '250x250') %> 
-<%end%>
+  <div class="mt-10 max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg center">
+    <section aria-labelledby="notes-title">
+      <div class="bg-white shadow sm:rounded-lg sm:overflow-hidden">
+        <div class="divide-y divide-gray-200">
+          <div class="px-4 py-5 sm:px-6">
+            <h2 id="notes-title" class="text-lg font-medium text-gray-900">Comments from people living nearby</h2>
+          </div>
+          <div class="px-4 py-6 sm:px-6">
+            <ul class="space-y-8">
+              <% @post.comments.each_with_index do |comment, i|%>
+                <%colour = "%06x" % (rand * 0xffffff)%>
+                <style>
+                  #overlay<%=i%>{
+                    background-color: #<%= colour%>;
+                  }
+                </style>
+                <li>
+                  <div class="flex space-x-3">
+                    <div class="relative flex-shrink-0">     
+                      <img class="h-10 w-10 rounded-full " src="https://i1.wp.com/researchictafrica.net/wp/wp-content/uploads/2016/10/default-profile-pic.jpg?ssl=1" alt="">
+                      <div id="overlay<%=i%>" class="h-10 w-10 absolute inset-0 rounded-full" style="mix-blend-mode: multiply;"></div>
+                    </div>
+                    <div>
+                      <div class="text-sm">
+                        <a href="#" class="font-medium text-gray-900">@<%=i+1%></a>
+                      </div>
+                      <div class="mt-1 text-sm text-gray-700">
+                        <p>
+                          <%= comment.text %>
+                        </p>
+                      </div>
+                      <div class="mt-2 text-sm space-x-2">
+                        <span class="text-gray-500 font-medium">
+                          <%= time_ago_in_words comment.created_at%> ago
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-6 sm:px-6">
+          <%= render  "comment_form", comment: @comment, post: @post%>
 
-<p>
-  <strong>City:</strong>
-  <%= @post.city %>
-</p>
+        </div>
+      </div>
+    </section>
+  </div>
 
-<p>Likes: <%=@post.likes.count%></p>
-
-<%= link_to "Like", post_like_path(@post.id), method: :post %>
-<%= link_to "Unlike", post_unlike_path(@post.id), method: :delete %>
-
-<div>
-  <strong>Comments:</strong>
-  <% @post.comments.each do |comment|%>
-  <p><%= comment.text %></p>
-  <%end%>
 </div>
-
-<%= render  "comment_form", comment: @comment, post: @post%>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

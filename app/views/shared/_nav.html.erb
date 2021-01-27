@@ -1,0 +1,58 @@
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <%= button_to root_path, class: "hover:bg-transparent", method: :get do%>
+            <img class="block lg:hidden h-8 w-auto" src="https://www.rmit.edu.au/content/dam/rmit/common-assets/logo/rmit-pixel.png" alt="RMIT">
+            <img class="hidden lg:block h-8 w-auto" src="https://www.rmit.eu/content/dam/rmit/au/en/news/homepage/RMITLOGO_REV_2COL.png" alt="RMIT">
+          <%end%>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <% unless !!current_user%>
+          <div class="flex-shrink-0">
+            <%= button_to new_user_registration_path, class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500", method: :get do%>
+              <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+              </svg>
+              <span>Sign up</span> 
+            <%end%>
+          </div>
+          <div class="flex-shrink-0">
+            <%= button_to new_user_session_path, class: "relative ml-4 inline-flex items-center px-4 py-2 border   shadow-sm text-sm font-medium rounded-md text-white bg-transparent hover:bg-indigo-600 hover:border-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500", method: :get do %>
+              <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+              <span>Login</span>
+            <%end%>
+        </div>
+          <%else%>
+            <div class="flex-shrink-0">
+              <%= button_to destroy_user_session_path, class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500", method: :delete do%>
+                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Sign out</span>
+              <%end%>
+            </div>
+          <%end%>
+          <% if !!current_user%>
+            <div class=" ml-4 flex-shrink-0 flex items-center">
+              <!-- Profile dropdown -->
+              <div class="ml-3 relative">
+                <div>
+                  <button class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                    <span class="sr-only">Open user menu</span>
+                    <img class="h-8 w-8 rounded-full" src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg" alt="">
+                  </button>
+                </div>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+

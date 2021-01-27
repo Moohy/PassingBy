@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.near_by_posts(request.location.city || DEFAULT_CITY)
+    @city = request.location.city || DEFAULT_CITY
+    @posts = Post.near_by_posts(@city)
     # @posts = @posts.map {|post| {post: post, comments: post.comments}}
     # puts @posts
   end
@@ -29,6 +30,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.city = user_city 
+    @post.image.attach(params[:post][:image])
 
     respond_to do |format|
       if @post.save
