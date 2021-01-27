@@ -2,6 +2,8 @@
 Rails.application.configure do
   config.assets.compile = true
 
+  config.action_controller.asset_host = ENV['CLOUDFRONT_ENDPOINT']
+
   config.logger = CloudWatchLogger.new({access_key_id: ENV['CW_ACCESS_KEY_ID'], secret_access_key: ENV['CW_SECRET_ACCESS_KEY']}, ENV['CW_LOG_GROUP'])
   # Settings specified here will take precedence over those in config/application.rb.
 
