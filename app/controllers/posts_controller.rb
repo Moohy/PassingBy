@@ -52,6 +52,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def new_posts_mailer
+    NewPostsMailer.email_users("users").deliver_now
+    render json: {data: "emails sent"}, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

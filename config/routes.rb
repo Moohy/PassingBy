@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  get '/posts/mailer', to: 'posts#new_posts_mailer'
+
   resources :posts do
     post 'like', to: 'likes#like'
     delete 'unlike', to: 'likes#unlike'
     resources :comments, except: [:index, :update, :delete]
-    get 'mailer', to: 'posts#new_posts_mailer'
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions',

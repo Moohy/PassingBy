@@ -30,10 +30,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def new_posts_mailer
-    NewPostsMailer.email_users("users").deliver_now
-  end
-
   private
 
     # Only allow a list of trusted parameters through.
