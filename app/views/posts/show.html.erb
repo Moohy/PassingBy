@@ -1,4 +1,4 @@
-<div class="h-screen bg-gray-100 pb-10">
+<div class="bg-gray-100 pb-10">
   <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg">
     <% if !@post.image.nil? && @post.image.attached? && @post.image.representable? %>
       <img class="h-full w-full object-cover" src=<%= url_for(@post.image)%> alt="People working on laptops">
