@@ -37,15 +37,15 @@
               <%end%>
             </div>
           <%end%>
-          <% if !!current_user%>
+          <% if current_user && !!current_user%>
             <div class=" ml-4 flex-shrink-0 flex items-center">
-              <!-- Profile dropdown -->
               <div class="ml-3 relative">
                 <div>
+                  <%= button_to user_path, class: "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white", method: :get do %>
                   <button class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
                     <span class="sr-only">Open user menu</span>
                     <img class="h-8 w-8 rounded-full" src="https://thumbs.dreamstime.com/b/default-avatar-profile-trendy-style-social-media-user-icon-187599373.jpg" alt="">
-                  </button>
+                  <%end%>
                 </div>
               </div>
             </div>

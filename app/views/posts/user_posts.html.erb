@@ -1,0 +1,32 @@
+<div class="bg-gray-100">
+  <div class="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+    <div class="space-y-12">
+      <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Your posts</h2>
+      </div>
+      <%if @posts.count > 0%>
+        <ul class="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:grid-cols-3 lg:gap-x-8">
+            <% @posts.each do |post| %>
+            <li>
+                <div class="space-y-4">
+                <%= link_to post_path(post.id) do%>
+                <div class="aspect-w-3 aspect-h-2" >
+                    <% if !post.image.nil? && post.image.attached? && post.image.representable? %>
+                    <img class="object-cover shadow-lg rounded" src=<%=url_for(post.image)%> alt="">
+                    <%else%>
+                    <img class="object-cover shadow-lg rounded" src="https://cdn.britannica.com/64/190464-050-B74E1FD9/view-central-business-district-Melbourne-train-station.jpg" alt="" >
+                    <%end%>
+                </div>
+                <%end%>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+      <%else%>
+        <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+            <h2 class="text-base text-gray-400 font-extrabold tracking-tight sm:text-sm">You haven't posted anything ..</h2>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

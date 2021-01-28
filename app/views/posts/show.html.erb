@@ -5,7 +5,7 @@
     <%end%>
   </div>
 
-  <div class="pt-2 max-w-4xl mx-auto sm:px-6 lg:px-8 rounded ">
+  <div class="w-full  pt-2 max-w-4xl mx-auto sm:px-6 lg:px-8 rounded flex justify-items-start items-center inline">
     <% if !!current_user && current_user.likes.where(post_id: @post.id).count > 0 %>    
       <%= button_to  post_unlike_path(@post.id), method: :delete do%>
         <div class="flex inline justify-center align-center  width-48  text-indigo-600 hover:text-indigo-500">
@@ -31,6 +31,19 @@
         </div>
       <%end%>
     <%end%>
+    <div class="p-4">
+      <span class="text-base text-gray-500"><%= @post.likes.count%></span>
+    </div>
+    <div class="w-full flex justify-end pr-2">
+      <div class="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+        <p class="text-xl text-gray-500 flex flex-wrap inline">
+        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <%= @post.city%></p>
+      </div>
+    </div>
   </div>
 
   <div class="mt-10 max-w-4xl mx-auto sm:px-6 lg:px-8 rounded bg center">

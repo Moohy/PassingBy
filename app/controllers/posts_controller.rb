@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def index
     @city = request.location.city || DEFAULT_CITY
     @posts = Post.near_by_posts(@city)
+    @other_posts = Post.where.not(city: @city).sample(10)
     # @posts = @posts.map {|post| {post: post, comments: post.comments}}
     # puts @posts
   end
@@ -51,6 +52,19 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def user
+    if !!current_user
+      @posts = current_user.posts
+      respond_to do |format|
+        format.html { render 'user_posts' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: 'Not allowed' }
+      end
     end
   end
 

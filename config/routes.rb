@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/posts/mailer', to: 'posts#new_posts_mailer'
+  get '/user', to: 'posts#user'
 
   resources :posts do
     post 'like', to: 'likes#like'
