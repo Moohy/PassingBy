@@ -17,7 +17,7 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   # Code is not reloaded between requests.
-  config.cache_classes = true
+  # config.cache_classes = true
   config.assets.css_compressor = :purger
 
   # Eager load code on boot. This eager loads most of Rails and
