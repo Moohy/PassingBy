@@ -17,8 +17,8 @@ class LikesController < ApplicationController
 
   def unlike
     post = Post.find_by_id( params[:post_id])
-    if post && current_user && (post == current_user.likes.where(post_id: post.id))
-      @like = Like.find_by(user_id: current_user.id, post_id: params[:post_id])
+    if post && !!current_user 
+      @like = Like.find_by(user_id: current_user.id, post_id: post.id)
       unless @like
         redirect_to post_path(params[:post_id]) 
         return
